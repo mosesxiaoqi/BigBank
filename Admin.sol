@@ -7,11 +7,13 @@ import "./IBank.sol";
 contract Admin {
     address public owner; // 定义一个地址类型的公共变量 owner
 
+    receive() external payable {}  // Admin 需要一个 receive() 以接受 ETH
+
     constructor() {
         owner = msg.sender; // 在构造函数中初始化 owner
     }
 
-    /// 调用者未被授权进行此操作。
+    /// Admin调用者未被授权进行此操作。
     error Unauthorized();
 
     function adminWithdraw(IBank bank) public {

@@ -22,7 +22,7 @@ contract BigBank is Bank {
     }
 
     // 新的函数来处理接收的逻辑，并应用 requireMinimum 修饰符
-    function deposit() public payable requireMinimum(msg.value) {
+    function deposit() internal requireMinimum(msg.value) {
         balances[msg.sender] += msg.value;
         updateRanking(msg.sender, balances[msg.sender]);
         emit Received(msg.sender, msg.value);

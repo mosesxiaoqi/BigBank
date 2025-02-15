@@ -20,7 +20,7 @@ contract Bank is IBank {
     /// 调用者未被授权进行此操作。
     error Unauthorized();
 
-    receive() external payable {
+    receive() external payable virtual{
         balances[msg.sender] += msg.value;
         updateRanking(msg.sender, balances[msg.sender]);
         emit Received(msg.sender, msg.value);  
